@@ -114,7 +114,8 @@ function navbar_region_navbar_alter(&$items) {
     // Remove any hook_navbar() and hook_navbar_alter() based items if they are
     // not placed via Navbar region.
     if (!isset($blocks["navbar_region-{$delta}"])) {
-      unset($items[$delta]);
+      // We actually want to have them rendered!
+      // unset($items[$delta]);
     }
 
     // Make any requested modifications to existing hook_navbar() and
