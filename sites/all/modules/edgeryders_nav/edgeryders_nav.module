@@ -44,6 +44,7 @@
 function edgeryders_nav_navbar()
 {
   global $user;
+  global $search_form;
   $items = array();
 
   // Submit story
@@ -93,12 +94,21 @@ function edgeryders_nav_navbar()
       '#type' => 'search',
       '#attributes' => array(
         'placeholder' => t('Search the site'),
-        'class' => array('search-global'),
+        'class' => array('search-form'),
+      ),
+    ),
+    'tray' => array(
+      '#heading' => t('Search the site'),
+      'shopping_cart' => array(
+        '#theme' => 'item_list',
+        '#items' => array(
+          drupal_get_form('global-search');
+        ),
       ),
     ),
     '#weight' => 200,
     '#attached' => array(
-      'css' => array(drupal_get_path('module','edgeryders_nav') . '/css/edgeryders_nav.navbar.icons.css'),
+      'css' => array(drupal_get_path('module','search') . 'search.css'),
     ),
   );
 
@@ -163,4 +173,14 @@ function edgeryders_nav_navbar()
   };
   dpm($items);
   return $items;
+}
+
+function edgeryders_nav_mail_form($form, &$form_state) {
+  $form = array();
+  $form['submit'] = array (
+    '#type' => 'submit',
+    '#value' => 'Subscribe',
+  );
+
+  return $form;
 }
