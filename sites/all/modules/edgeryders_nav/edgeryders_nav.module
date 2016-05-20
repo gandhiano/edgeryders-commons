@@ -99,7 +99,7 @@ function edgeryders_nav_navbar()
     ),
     'tray' => array(
       '#heading' => t('Search the site'),
-      'shopping_cart' => array(
+      'search' => array(
         '#theme' => 'item_list',
         '#items' => array(
           drupal_get_form('search_form')
@@ -108,7 +108,7 @@ function edgeryders_nav_navbar()
     ),
     '#weight' => 200,
     '#attached' => array(
-      'css' => array(drupal_get_path('module','search') . 'search.css'),
+      'css' => array(drupal_get_path('module','search') . '/search.css'),
     ),
   );
 
