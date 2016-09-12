@@ -108,5 +108,4 @@ function edgeryders_nav_navbar_alter(&$items) {
   $items['user']['#wrapper-attributes'] = array(
     'class' => array('pull-right'),
   );
-  dpm($items);
 }

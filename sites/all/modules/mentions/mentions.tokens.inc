@@ -94,6 +94,17 @@ function mentions_tokens($type, $tokens, array $data = array(), array $options =
 
         case 'source-path':
           $replacements[$original] = $mention->source_path;
+          
+          // Annesley: lets add the #comment anchor in the case of comments
+          $source_id = explode('::', $mention->source);
+          $source_entity_type = isset($source_id[1]) ? $source_id[1] : null;
+          if ($source_entity_type == 'comment' 
+            && strpos($replacements[$original], '#') === FALSE
+            && isset($source_id[2])
+          ) {
+            $replacements[$original] .= '#comment-' . $source_id[2];
+          }
+          
           if ($sanitize) {
             $replacements[$original] = filter_xss($replacements[$original]);
           }
