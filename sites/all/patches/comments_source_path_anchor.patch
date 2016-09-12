@@ -1,0 +1,19 @@
+--- mentions.tokens.inc_original	2016-09-12 14:08:12.335127299 +0200
++++ mentions.tokens.inc	2016-09-09 12:55:07.379837025 +0200
+@@ -95,6 +95,16 @@
+         case 'source-path':
+           $replacements[$original] = $mention->source_path;
+           
++          // Annesley: lets add the #comment anchor in the case of comments
++          $source_id = explode('::', $mention->source);
++          $source_entity_type = isset($source_id[1]) ? $source_id[1] : null;
++          if ($source_entity_type == 'comment' 
++            && strpos($replacements[$original], '#') === FALSE
++            && isset($source_id[2])
++          ) {
++            $replacements[$original] .= '#comment-' . $source_id[2];
++          }
++          
+           if ($sanitize) {
+             $replacements[$original] = filter_xss($replacements[$original]);
+           }
